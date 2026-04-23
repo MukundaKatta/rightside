@@ -1,32 +1,45 @@
 # RightSide
 
-> Know your rights. In plain English.
-
 AI legal copilot for landlords, tenants, freelancers, and small claims. Cheaper than a lawyer. Faster than Google.
 
-## What it does
+**Status:** v0 skeleton — landing page + mocked legal Q&A route. Full AI not yet wired.
 
-- **Reads your contracts** — Uploads a lease, a freelance agreement, or a notice. Tells you what is real and what is fluff.
-- **Jurisdiction-aware** — State and country-specific rules, not generic boilerplate.
-- **Drafts letters** — Security deposit demands, cease and desist, small claims filings. Ready to send.
+---
 
-## Why
+## Stack
 
-Consumer legal. Part of a 20-product exploration of high-demand consumer and SMB markets.
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-## Status
+## Run locally
 
-Landing page live. Product in planning.
+```bash
+pnpm install
+pnpm dev
+```
 
-- **Live**: https://mukundakatta.github.io/rightside/
+Open http://localhost:3000.
 
-## Stack (when built)
+## Deploy
 
-- Next.js 16 (App Router)
-- Supabase for auth + data
-- Stripe for payments
-- Deployed on Vercel
+Push to `main` — Vercel picks it up automatically. No environment variables required.
 
-## Local preview
+## Routes
 
-Just open `index.html` in a browser — it is a static landing page with the Tailwind CDN.
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | v0 legal Q&A — paste a landlord/tenant question, get a plain-English answer from 5 hardcoded scenarios |
+| `/api/waitlist` | `POST { email }` → forwards to waitlist-api-sigma with `product: "rightside"` |
+
+## What's next
+
+- Wire real AI (legal analysis + letter drafting) behind `/try`
+- Multi-jurisdiction support
+- Auth + per-user case tracking
